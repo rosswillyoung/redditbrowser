@@ -8,8 +8,10 @@ with open('keys.json') as f:
     client_secret = data["data"]["client_secret"]
     user_agent = data["data"]["user_agent"]
 
-print(user_agent)
+reddit = praw.Reddit(client_id=client_id,
+                    client_secret=client_secret,
+                    user_agent=user_agent)
 
-# for submission in reddit.subreddit('reddevils').hot(limit=1):
-#     print(submission.title)
-#     pprint.pprint(vars(submission))
+for submission in reddit.subreddit('reddevils').hot(limit=1):
+    print(submission.title)
+    pprint.pprint(vars(submission))
