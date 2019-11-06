@@ -12,6 +12,14 @@ reddit = praw.Reddit(client_id=client_id,
                     client_secret=client_secret,
                     user_agent=user_agent)
 
-for submission in reddit.subreddit('reddevils').hot(limit=1):
+for submission in reddit.subreddit('reddevils').hot(limit=10):
     print(submission.title)
-    pprint.pprint(vars(submission))
+    print(submission.selftext)
+    if (input('Load Comments?') == "y"):
+        for top_level_comment in submission.comments:
+            print(top_level_comment.body)
+            print('###########################')
+    else:
+        next
+    print("Loading next title...")
+    # pprint.pprint(vars(submission))
