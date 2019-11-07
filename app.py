@@ -32,15 +32,19 @@ def get_comments(submission):
             next
 
 
-def get_submissions(sub, sort_by):
+def get_submissions():
+    sub = input("Which subreddit would you like to view? ")
+    sort_by = input("Hot or Top? ")
+    post_limit = int(input("How many posts would you like to load? "))
     if sort_by == "hot" or sort_by == "Hot":
-        for submission in reddit.subreddit(sub).hot(limit=10):
+        for submission in reddit.subreddit(sub).hot(limit=post_limit):
             print(submission.title)
             print('')
             print(submission.selftext)
             print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
             user_wants_comments = input("Load Comments? (y/Y for yes) ")
-            if (user_wants_comments == "y" or user_wants_comments == "Y"):
+            if (user_wants_comments == "y" or user_wants_comments == "Y" or
+                user_wants_comments == "yes" or user_wants_comments == "Yes"):
                 get_comments(submission)
             elif(user_wants_comments == "quit" or user_wants_comments == "Quit"):
                 break
@@ -52,7 +56,6 @@ def get_submissions(sub, sort_by):
     elif sort_by == "top" or sort_by == "Top":
         sort_by_time = input("Do you want the top posts of the day/week/month/year or all time?" +
         "Please enter 'day', 'week', 'month', 'year', or 'all' ")
-        post_limit = int(input("How many posts would you like to load? "))
         os.system('cls')
         for submission in reddit.subreddit(sub).top(sort_by_time, limit=post_limit):
             print(submission.title)
@@ -60,7 +63,8 @@ def get_submissions(sub, sort_by):
             print(submission.selftext)
             print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
             user_wants_comments = input("Load Comments? (y/Y for yes) ")
-            if (user_wants_comments == "y" or user_wants_comments == "Y"):
+            if (user_wants_comments == "y" or user_wants_comments == "Y" or 
+                user_wants_comments == "yes" or user_wants_comments == "Yes"):
                 get_comments(submission)
             elif(user_wants_comments == "quit" or user_wants_comments == "Quit"):
                 break
@@ -70,8 +74,6 @@ def get_submissions(sub, sort_by):
             print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
             # pprint.pprint(vars(submission))
 
-sub = input("Which subreddit would you like to view? ")
-sort_by = input("Hot or Top? ")
 os.system('cls')
-get_submissions(sub, sort_by)
+get_submissions()
 
