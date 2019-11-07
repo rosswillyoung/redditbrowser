@@ -52,8 +52,9 @@ def get_submissions(sub, sort_by):
     elif sort_by == "top" or sort_by == "Top":
         sort_by_time = input("Do you want the top posts of the day/week/month/year or all time?" +
         "Please enter 'day', 'week', 'month', 'year', or 'all' ")
+        post_limit = int(input("How many posts would you like to load? "))
         os.system('cls')
-        for submission in reddit.subreddit(sub).top(sort_by_time, limit=10):
+        for submission in reddit.subreddit(sub).top(sort_by_time, limit=post_limit):
             print(submission.title)
             print('')
             print(submission.selftext)
