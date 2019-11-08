@@ -19,16 +19,20 @@ reddit = praw.Reddit(client_id=client_id,
 def get_comments(submission):
     for top_level_comment in submission.comments:
         print(top_level_comment.body)
-        print('~~~~~~~~~~~~~~~~~~~~~~')
+        print('###############################################################################')
+        print('')
         second_level = input("Get second level comments? ")
         if (second_level == "Y" or second_level == "y"):
             for second_level_comment in top_level_comment.replies:
                 print(second_level_comment.body)
-                print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        elif (second_level == "quit" or second_level == "Quit"):
+                print('###############################################################################')
+                print('')
+        elif (second_level == "quit" or second_level == "Quit"
+                or second_level == "no" or second_level == "No"):
             break
         else:
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print('###############################################################################')
+            print('')
             next
 
 
@@ -41,7 +45,8 @@ def get_submissions():
             print(submission.title)
             print('')
             print(submission.selftext)
-            print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+            print('###############################################################################')
+            print('')
             user_wants_comments = input("Load Comments? (y/Y for yes) ")
             if (user_wants_comments == "y" or user_wants_comments == "Y" or
                 user_wants_comments == "yes" or user_wants_comments == "Yes"):
@@ -51,7 +56,8 @@ def get_submissions():
             else:
                 next
             print("Loading next title...")
-            print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+            print('###############################################################################')
+            print('')
             # pprint.pprint(vars(submission))
     elif sort_by == "top" or sort_by == "Top":
         sort_by_time = input("Do you want the top posts of the day/week/month/year or all time?" +
@@ -61,7 +67,8 @@ def get_submissions():
             print(submission.title)
             print('')
             print(submission.selftext)
-            print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+            print('###############################################################################')
+            print('')
             user_wants_comments = input("Load Comments? (y/Y for yes) ")
             if (user_wants_comments == "y" or user_wants_comments == "Y" or 
                 user_wants_comments == "yes" or user_wants_comments == "Yes"):
@@ -71,7 +78,8 @@ def get_submissions():
             else:
                 next
             print("Loading next title...")
-            print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+            print('###############################################################################')
+            print('')
             # pprint.pprint(vars(submission))
 
 os.system('cls')
