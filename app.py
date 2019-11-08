@@ -35,11 +35,15 @@ def get_comments(submission):
             print('')
             next
 
+    print("Last Comment, loading next post...")
+    print('###############################################################################')
+    print('')
+
 
 def get_submissions():
     sub = input("Which subreddit would you like to view? ")
-    sort_by = input("Hot or Top? ")
     post_limit = int(input("How many posts would you like to load? "))
+    sort_by = input("Hot or Top? ")
     if sort_by == "hot" or sort_by == "Hot":
         for submission in reddit.subreddit(sub).hot(limit=post_limit):
             print(submission.title)
