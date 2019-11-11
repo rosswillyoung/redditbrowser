@@ -25,9 +25,13 @@ def get_comments(submission):
         second_level = input("Get second level comments? ")
         if (second_level == "Y" or second_level == "y"):
             for second_level_comment in top_level_comment.replies:
-                print(second_level_comment.body)
-                print('###############################################################################')
-                print('')
+                try:
+                    print(second_level_comment.body)
+                    print('###############################################################################')
+                    print('')
+                except AttributeError:
+                    print('No more second-level comments, next top-level comment:')
+                    continue
         elif (second_level == "quit" or second_level == "Quit"
                 or second_level == "no" or second_level == "No"):
             break
