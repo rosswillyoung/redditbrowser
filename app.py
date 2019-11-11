@@ -15,6 +15,9 @@ reddit = praw.Reddit(client_id=client_id,
                     client_secret=client_secret,
                     user_agent=user_agent)
                     
+yes_responses = ['Yes', 'yes', 'Y', 'y']
+
+no_responses = ['No', 'no', 'N', 'n', 'Quit', 'quit']
 
 # Gets comments from a submission
 def get_comments(submission):
@@ -23,7 +26,7 @@ def get_comments(submission):
         print('###############################################################################')
         print('')
         second_level = input("Get second level comments? ")
-        if (second_level == "Y" or second_level == "y"):
+        if (second_level in yes_responses):
             for second_level_comment in top_level_comment.replies:
                 try:
                     print(second_level_comment.body)
@@ -32,8 +35,7 @@ def get_comments(submission):
                 except AttributeError:
                     print('No more second-level comments, next top-level comment:')
                     continue
-        elif (second_level == "quit" or second_level == "Quit"
-                or second_level == "no" or second_level == "No"):
+        elif (second_level in no_responses):
             break
         else:
             print('###############################################################################')
@@ -53,10 +55,9 @@ def get_submissions(sub, post_limit, sort_by):
             print('###############################################################################')
             print('')
             user_wants_comments = input("Load Comments? (y/Y for yes) ")
-            if (user_wants_comments == "y" or user_wants_comments == "Y" or
-                user_wants_comments == "yes" or user_wants_comments == "Yes"):
+            if (user_wants_comments in yes_responses):
                 get_comments(submission)
-            elif(user_wants_comments == "quit" or user_wants_comments == "Quit"):
+            elif(user_wants_comments in no_responses):
                 break
             else:
                 next
@@ -75,10 +76,9 @@ def get_submissions(sub, post_limit, sort_by):
             print('###############################################################################')
             print('')
             user_wants_comments = input("Load Comments? (y/Y for yes) ")
-            if (user_wants_comments == "y" or user_wants_comments == "Y" or 
-                user_wants_comments == "yes" or user_wants_comments == "Yes"):
+            if (user_wants_comments in yes_responses):
                 get_comments(submission)
-            elif(user_wants_comments == "quit" or user_wants_comments == "Quit"):
+            elif(user_wants_comments in no_responses):
                 break
             else:
                 next
