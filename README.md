@@ -10,5 +10,5 @@ You will need to create a file named 'keys.json' in the project root folder with
     }
 }
 
-<img src="example.jpg" alt="Example of reddit browser in PowerShell"/>
+<img src="https://i.imgur.com/3vrnc7f.jpg" alt="Example of reddit browser in PowerShell"/>
 
