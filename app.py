@@ -40,28 +40,7 @@ def get_comments(submission):
     print('###############################################################################')
     print('')
 
-
-def get_submissions():
-    while True:
-        sub = input("Which subreddit would you like to view? ")
-        if sub == '':
-            print('Please enter a valid subreddit')
-            sub = input("Which subreddit would you like to view? ")
-        else:
-            break
-    while True:
-        try:
-            post_limit = int(input("How many posts would you like to load? "))
-            break
-        except ValueError:
-            print('Please enter a valid number')
-    while True:
-        sort_by = input("Hot or Top? ")
-        if sort_by == '':
-            print('Please enter a valid value')
-            sort_by = input("Hot or Top? ")
-        else:
-            break
+def get_submissions(sub, post_limit, sort_by):
     if sort_by == "hot" or sort_by == "Hot":
         for submission in reddit.subreddit(sub).hot(limit=post_limit):
             print(submission.title)
@@ -104,6 +83,28 @@ def get_submissions():
             print('')
             # pprint.pprint(vars(submission))
 
+def get_user_input():
+    while True:
+        sub = input("Which subreddit would you like to view? ")
+        if sub == '':
+            print('Please enter a valid subreddit')
+        else:
+            break
+    while True:
+        try:
+            post_limit = int(input("How many posts would you like to load? "))
+            break
+        except ValueError:
+            print('Please enter a valid number')
+    while True:
+        sort_by = input("Hot or Top? ")
+        valid_responses = ['Hot', 'hot', 'Top', 'top']
+        if sort_by not in valid_responses:
+            print('Please enter a valid value')
+        else:
+            break
+    get_submissions(sub, post_limit, sort_by)
+
 os.system('cls')
-get_submissions()
+get_user_input()
 
