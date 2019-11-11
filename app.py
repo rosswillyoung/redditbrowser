@@ -14,6 +14,7 @@ with open('keys.json') as f:
 reddit = praw.Reddit(client_id=client_id,
                     client_secret=client_secret,
                     user_agent=user_agent)
+                    
 
 # Gets comments from a submission
 def get_comments(submission):
@@ -41,9 +42,26 @@ def get_comments(submission):
 
 
 def get_submissions():
-    sub = input("Which subreddit would you like to view? ")
-    post_limit = int(input("How many posts would you like to load? "))
-    sort_by = input("Hot or Top? ")
+    while True:
+        sub = input("Which subreddit would you like to view? ")
+        if sub == '':
+            print('Please enter a valid subreddit')
+            sub = input("Which subreddit would you like to view? ")
+        else:
+            break
+    while True:
+        try:
+            post_limit = int(input("How many posts would you like to load? "))
+            break
+        except ValueError:
+            print('Please enter a valid number')
+    while True:
+        sort_by = input("Hot or Top? ")
+        if sort_by == '':
+            print('Please enter a valid value')
+            sort_by = input("Hot or Top? ")
+        else:
+            break
     if sort_by == "hot" or sort_by == "Hot":
         for submission in reddit.subreddit(sub).hot(limit=post_limit):
             print(submission.title)
