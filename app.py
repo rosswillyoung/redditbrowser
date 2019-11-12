@@ -110,5 +110,10 @@ def get_user_input():
     get_submissions(sub, post_limit, sort_by)
 
 os.system('cls')
-get_user_input()
+while True:
+    load_subreddit = input("Load a subreddit? ")
+    if load_subreddit in yes_responses:
+        get_user_input()
+    else:
+        break
 
