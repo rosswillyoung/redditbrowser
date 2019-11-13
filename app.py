@@ -15,9 +15,9 @@ reddit = praw.Reddit(client_id=client_id,
                     client_secret=client_secret,
                     user_agent=user_agent)
                     
-yes_responses = ['Yes', 'yes', 'Y', 'y']
+yes_responses = ['Yes', 'yes', 'Y', 'y', '']
 
-no_responses = ['No', 'no', 'N', 'n', 'Quit', 'quit']
+no_responses = ['No', 'no', 'N', 'n', 'Quit', 'quit', 'Q', 'q']
 
 # Gets comments from a submission
 def get_comments(submission):
@@ -102,7 +102,7 @@ def get_user_input():
             print('Please enter a valid number')
     while True:
         sort_by = input("Hot or Top? ")
-        valid_responses = ['Hot', 'hot', 'Top', 'top']
+        valid_responses = ['Hot', 'hot', 'Top', 'top', '']
         if sort_by not in valid_responses:
             print('Please enter a valid value')
         else:
