@@ -15,7 +15,7 @@ reddit = praw.Reddit(client_id=client_id,
                     client_secret=client_secret,
                     user_agent=user_agent)
                     
-yes_responses = ['Yes', 'yes', 'Y', 'y', '']
+yes_responses = ['Yes', 'yes', 'Y', 'y']
 
 no_responses = ['No', 'no', 'N', 'n', 'Quit', 'quit', 'Q', 'q']
 
@@ -112,7 +112,7 @@ def get_user_input():
 os.system('cls')
 while True:
     load_subreddit = input("Load a subreddit? ")
-    if load_subreddit in yes_responses:
+    if load_subreddit in yes_responses or load_subreddit == '':
         get_user_input()
     else:
         break
